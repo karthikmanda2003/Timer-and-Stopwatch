@@ -1,0 +1,27 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap');
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: rgb(243, 236, 228);
+    }
+    #timerDisplay {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    #stopwatchDisplay {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    button {
+        font-family: 'Sorts Mill Goudy', serif;
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      color: white;
+      background-color: rgb(159, 167, 177);
+    }
+    button:hover{
+         background-color: rgb(78, 78, 81); 
+    }

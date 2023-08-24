@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer and Stopwatch</title>
+    <link rel="stylesheet" href="style2.css">
+    
+</head>
+<body>
+  <h1>TIMER AND STOPWATCH</h1>
+  
+  <h2>TIMER</h2>
+  <div id="timerDisplay">00:00:00</div>
+  <button id="startTimer">Start</button>
+  <button id="stopTimer">Stop</button>
+  <button id="resetTimer">Reset</button>
+
+  <h2>STOPWATCH</h2>
+  <div id="stopwatchDisplay">00:00:00</div>
+  <button id="startStopwatch">Start</button>
+  <button id="stopStopwatch">Stop</button>
+  <button id="resetStopwatch">Reset</button>
+
+  <script>
+    let timerInterval;
+    let timerRunning = false;
+    let timerTime = 0;
+
+    let stopwatchInterval;
+    let stopwatchRunning = false;
+    let stopwatchTime = 0;
+
+    const timerDisplay = document.getElementById('timerDisplay');
+    const startTimerBtn = document.getElementById('startTimer');
+    const stopTimerBtn = document.getElementById('stopTimer');
+    const resetTimerBtn = document.getElementById('resetTimer');
+
+    const stopwatchDisplay = document.getElementById('stopwatchDisplay');
+    const startStopwatchBtn = document.getElementById('startStopwatch');
+    const stopStopwatchBtn = document.getElementById('stopStopwatch');
+    const resetStopwatchBtn = document.getElementById('resetStopwatch');
+
+    function startTimer() {
+      if (!timerRunning) {
+        timerInterval = setInterval(updateTimer, 1000);
+        timerRunning = true;
+        startTimerBtn.disabled = true;
+        stopTimerBtn.disabled = false;
+        resetTimerBtn.disabled = true;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      startTimerBtn.disabled = false;
+      stopTimerBtn.disabled = true;
+      resetTimerBtn.disabled = false;
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      timerTime = 0;
+      updateTimerDisplay();
+      startTimerBtn.disabled = false;
+      stopTimerBtn.disabled = true;
+      resetTimerBtn.disabled = true;
+    }
+
+    function updateTimer() {
+      timerTime++;
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const hours = Math.floor(timerTime / 3600);
+      const minutes = Math.floor((timerTime % 3600) / 60);
+      const seconds = timerTime % 60;
+      timerDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function startStopwatch() {
+      if (!stopwatchRunning) {
+        stopwatchInterval = setInterval(updateStopwatch, 1000);
+        stopwatchRunning = true;
+        startStopwatchBtn.disabled = true;
+        stopStopwatchBtn.disabled = false;
+        resetStopwatchBtn.disabled = true;
+      }
+    }
+
+    function stopStopwatch() {
+      clearInterval(stopwatchInterval);
+      stopwatchRunning = false;
+      startStopwatchBtn.disabled = false;
+      stopStopwatchBtn.disabled = true;
+      resetStopwatchBtn.disabled = false;
+    }
+
+    function resetStopwatch() {
+      clearInterval(stopwatchInterval);
+      stopwatchRunning = false;
+      stopwatchTime = 0;
+      updateStopwatchDisplay();
+      startStopwatchBtn.disabled = false;
+      stopStopwatchBtn.disabled = true;
+      resetStopwatchBtn.disabled = true;
+    }
+
+    function updateStopwatch() {
+      stopwatchTime++;
+      updateStopwatchDisplay();
+    }
+
+    function updateStopwatchDisplay() {
+      const hours = Math.floor(stopwatchTime / 3600);
+      const minutes = Math.floor((stopwatchTime % 3600) / 60);
+      const seconds = stopwatchTime % 60;
+      stopwatchDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    startTimerBtn.addEventListener('click', startTimer);
+    stopTimerBtn.addEventListener('click', stopTimer);
+    resetTimerBtn.addEventListener('click', resetTimer);
+
+    startStopwatchBtn.addEventListener('click', startStopwatch);
+    stopStopwatchBtn.addEventListener('click', stopStopwatch);
+    resetStopwatchBtn.addEventListener('click', resetStopwatch);
+  </script>
+</body>
+</html>
